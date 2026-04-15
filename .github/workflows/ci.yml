@@ -45,6 +45,9 @@ jobs:
       - name: Train model
         run: python train.py
 
+      - name: Set lowercase image name
+        run: echo "IMAGE=ghcr.io/$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')/mushroom-mlops:latest" >> $GITHUB_ENV
+
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -53,7 +56,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t ghcr.io/${{ github.repository_owner }}/mushroom-mlops:latest .
+        run: docker build -t ${{ env.IMAGE }} .
 
       - name: Push Docker image
-        run: docker push ghcr.io/${{ github.repository_owner }}/mushroom-mlops:latest
+        run: docker push ${{ env.IMAGE }}
