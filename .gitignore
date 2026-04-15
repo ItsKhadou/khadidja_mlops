@@ -1,0 +1,28 @@
+# Artefacts générés (modèle entraîné)
+artifacts/model.pkl
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Environnements
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Système
+.DS_Store
+Thumbs.db
